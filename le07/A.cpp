@@ -24,13 +24,11 @@ int main(){
     }
     if(k != 0){
       tree[num].child = children[0];
-      if(k == 1){
-        tree[children[0]].parent = num;
-      }
       for (int j = 1; j < k; j++){
         tree[children[j - 1]].parent = num;
         tree[children[j - 1]].next_sibling = children[j];
       }
+      tree[children[k - 1]].parent = num;
     }
   }
 
@@ -47,7 +45,7 @@ int main(){
     cout << ", [";
     if(tree[i].child != -1){
       cout << tree[i].child;
-      for(int c_num = tree[i].child; c_num != -1; c_num = tree[c_num].next_sibling){
+      for(int c_num = tree[tree[i].child].next_sibling; c_num != -1; c_num = tree[c_num].next_sibling){
         cout << ", " << c_num;
       }
     }
@@ -56,10 +54,11 @@ int main(){
 }
 
 int depth_calc(Node *tree, int number){
-  int depth;
-  for (int i = number; i != 0; i = tree[i].parent)
+  int depth = 0, i = number;
+  while(1)
   {
     if(tree[i].parent == -1) break;
+    i = tree[i].parent;
     depth++;
   }
 
