@@ -449,4 +449,11 @@ Cargo.lock
 
 # MSVC Windows builds of rustc generate these, which store debugging information
 
+.vscode
+*
+!*.cpp
+!*.go
+!*.js
+!*.py
+!*.c
 # End of https://www.toptal.com/developers/gitignore/api/c,c++,java,python,node,rust,linux,go
